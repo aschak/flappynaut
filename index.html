@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Flappynaut!</title>
+
+  <script src="//cdn.jsdelivr.net/phaser/2.4.4/phaser.min.js"></script>
+  <script type="text/javascript" src="javascripts/main.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+    body {
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #gameDiv {
+      position: inherit;
+      left: 36%;
+      top: 17%;
+      border: black solid 10px;
+      border-radius: 5%;
+      max-width: 700px;
+    }
+
+    #prompt {
+      font-family: "Play", sans-serif;
+      font-size: 34px;
+      text-align: center;
+      border: black solid 4px;
+      border-radius: 15px;
+      background-color: dimgrey;
+      padding: 11px;
+      position: inherit;
+      top: 76%;
+      left: 27%;
+    }
+
+    #gameContainer {
+      max-width: 700px;
+      position: fixed;
+    }
+  </style>
+
+</head>
+<body background="assets/spaceship_interior.jpg">
+
+<div id="gameContainer">
+  <div id="prompt">
+    Help Flappynaut escape the exploding planet!
+    <br/>
+    Use spacebar to boost the jetpack!
+  </div>
+
+  <div id="gameDiv"> </div>
+</div>
+
+</body>
+</html>
