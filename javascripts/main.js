@@ -1,5 +1,4 @@
-var game = new Phaser.Game(450, 500, Phaser.AUTO, 'gameDiv');
-
+// var game = new Phaser.Game(450, 500, Phaser.AUTO, 'gameDiv');
 
 var flappynautMain = {
 
@@ -18,12 +17,12 @@ var flappynautMain = {
     game.add.sprite(-275, -300, 'supernova');
 
     this.score = 0
-    this.scoreText = game.add.text(20, 20, "0", {font: "30px Arial", fill: "#ffffff"})
+    this.scoreText = game.add.text(20, 20, "0", {font: "30px Play", fill: "#ffffff"})
 
-    this.bird = this.game.add.sprite(100, 245, 'astronaut');
-    game.physics.arcade.enable(this.bird);
-    this.bird.body.gravity.y = 1000;
-    this.bird.animations.add("boost", [0, 1, 2, 3], 10, true);
+    this.flappynaut = this.game.add.sprite(100, 245, 'astronaut');
+    game.physics.arcade.enable(this.flappynaut);
+    this.flappynaut.body.gravity.y = 1000;
+    this.flappynaut.animations.add("boost", [0, 1, 2, 3], 10, true);
 
     this.asteroids = game.add.group();
     this.asteroids.enableBody = true;
@@ -53,7 +52,7 @@ var flappynautMain = {
   update: function () {
 
 
-    game.physics.arcade.collide(this.bird, this.asteroids);
+    game.physics.arcade.collide(this.flappynaut, this.asteroids);
     game.physics.arcade.collide(this.asteroids, this.asteroids);
 
     // this.bird.body.velocity.y = 0
@@ -61,14 +60,14 @@ var flappynautMain = {
     //   this.bird.body.velocity.y = -250;
     // }
 
-    if (this.bird.inWorld == false) {
-      this.restart();
+    if (this.flappynaut.inWorld == false) {
+      game.state.start('gameOver')
     }
   },
 
   jump: function () {
-    this.bird.body.velocity.y = -300;
-    this.bird.animations.play("boost"); // WHY NO WORK?
+    this.flappynaut.body.velocity.y = -325;
+    this.flappynaut.animations.play("boost"); // WHY NO WORK?
     // this.bird.animations.stop();
     // player.frame = 0;
   },
@@ -102,6 +101,26 @@ var flappynautMain = {
 
   }
 };
+
+var gameOver = {
+  preload: function () {
+    game.load.image('gameOver', 'assets/gameOver.jpg');
+  },
+
+  create: function () {
+    this.add.button(-275, -300, 'gameOver', this.startGame, this);
+
+    game.add.text(100, 200, "YOUR SCORE", {font: "bold 40px Arial", fill: "#46c0f9", align: "center"});
+    game.add.text(100, 150, score.toString(), {font: "bold 40px Arial", fill: "#46c0f9", align: "center"});
+  },
+
+  startGame: function () {
+    this.state.start('main');
+  }
+
+
+}
+
 
 game.state.add('main', flappynautMain)
 game.state.start('main');
