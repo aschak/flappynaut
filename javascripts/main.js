@@ -5,7 +5,7 @@ var flappynautMain = {
   preload: function () {
     game.stage.backgroundColor = '#rrrrrr';
 
-    game.load.image('supernova', 'assets/supernova.jpg')
+    game.load.image('supernova', 'assets/Supernova.jpg')
     game.load.spritesheet('astronaut', 'assets/astronaut.png', 51 , 72);
     game.load.spritesheet('asteroids', 'assets/asteroids.png', 120 , 119);
 
