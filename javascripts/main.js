@@ -1,5 +1,3 @@
-// var game = new Phaser.Game(450, 500, Phaser.AUTO, 'gameDiv');
-
 var flappynautMain = {
 
   preload: function () {
@@ -26,21 +24,12 @@ var flappynautMain = {
 
     this.asteroids = game.add.group();
     this.asteroids.enableBody = true;
-    // this.pipes.createMultiple(10, 'asteroids', 1); //Loop?
-    // this.pipes.createMultiple(10, 'asteroids', 2);
 
 
 
     for (var i = 1; i < 15; i++) {
-      // this.pipes.createMultiple(0, 'asteroids', i);
       var asteroid = this.asteroids.createMultiple(2, 'asteroids', i)
     }
-
-
-    // for (var i = 0; i < 20; i++) {
-    //   var frame = Math.random(16 * Math.random());
-    //   this.pipes.create(0, 0, 'asteroids', frame);
-    // }
 
     this.asteroidsTimer = game.time.events.loop(1500, this.addColOfAsteroids, this);
 
@@ -55,10 +44,6 @@ var flappynautMain = {
     game.physics.arcade.collide(this.flappynaut, this.asteroids);
     game.physics.arcade.collide(this.asteroids, this.asteroids);
 
-    // this.bird.body.velocity.y = 0
-    // if (this.spaceKey.isDown) {
-    //   this.bird.body.velocity.y = -250;
-    // }
 
     if (this.flappynaut.inWorld == false) {
       game.state.start('gameOver')
@@ -67,9 +52,7 @@ var flappynautMain = {
 
   jump: function () {
     this.flappynaut.body.velocity.y = -325;
-    this.flappynaut.animations.play("boost"); // WHY NO WORK?
-    // this.bird.animations.stop();
-    // player.frame = 0;
+    this.flappynaut.animations.play("boost"); 
   },
 
   restart: function () {
@@ -77,7 +60,7 @@ var flappynautMain = {
   },
 
   addAsteroid: function (x, y, vel) {
-    var asteroid = this.asteroids.getFirstDead(); //this.pipes.getRandom()
+    var asteroid = this.asteroids.getFirstDead(); 
     asteroid.reset(x, y);
     asteroid.scale.setTo(0.4, 0.4)
     asteroid.body.velocity.x = -vel;
